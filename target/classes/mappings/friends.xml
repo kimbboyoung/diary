@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="FriendsDAO">
+	<select id="friendsList" resultType="friends">
+		SELECT * FROM friends
+	</select>
+	
+	
+	<delete id="delFriends">
+		delete from friends where f_friendsnum = #{f_friendsnum}
+	</delete>
+	
+	
+	<insert id="addFriends">
+		insert into friends values(default, 내번호, 그룹이름, #{f_friendsnum})
+	</insert>
+</mapper>
