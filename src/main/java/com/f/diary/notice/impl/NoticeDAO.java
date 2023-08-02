@@ -34,4 +34,19 @@ public class NoticeDAO {
 		mybatis.update("NoticeDAO.deleteNotice",vo);
 		
 	}
+	
+	//일기 보기
+	public NoticeVO selectNotice(NoticeVO vo) {
+		return mybatis.selectOne("NoticeDAO.selectNotice",vo);
+	}
+	
+	//삭제된 일기 보기
+	public List<NoticeVO> selectDelNoticeList(NoticeVO vo) {
+		return mybatis.selectList("NoticeDAO.selectDelNoticeList",vo);
+	}
+	
+	//일기 복원하기
+	public void resNotice(NoticeVO vo) {
+		mybatis.update("NoticeDAO.resNotice",vo);
+	}
 }
