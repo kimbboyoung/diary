@@ -78,5 +78,6 @@ public class NoticeController {
 		noticeService.deleteNotice(vo);
 		
 		return "notice/noticeList";
+		//did
 	}
 }
