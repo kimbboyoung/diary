@@ -12,4 +12,12 @@ public interface NoticeService {
 	//글 삭제
 	void deleteNotice(NoticeVO vo);
 	
+	//일기 보기
+	NoticeVO selectNotice(NoticeVO vo);
+	
+	//삭제된 일기 보기
+	List<NoticeVO> selectDelNoticeList(NoticeVO vo);
+	
+	//일기 복원
+	void resNotice(NoticeVO vo);
 }

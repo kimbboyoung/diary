@@ -17,5 +17,15 @@
 		UPDATE NOTICE SET N_ONOFF = '1' WHERE N_NUM= #{n_num}
 	</update>
 
-
+	<select id="selectNotice" resultType="notice">
+		SELECT * FROM NOTICE WHERE (N_ONOFF = '0' OR N_ONOFF = '2') AND N_M_ID = #{n_m_id} AND N_NUM =#{n_num}
+	</select>
+	
+	<select id="selectDelNoticeList" resultType="notice">
+		SELECT * FROM NOTICE WHERE N_ONOFF ='1' AND N_M_ID= #{n_m_id}
+	</select>
+	
+	<update id="resNotice">
+		UPDATE NOTICE SET N_ONOFF = '2' WHERE N_NUM= #{n_num}
+	</update>
 </mapper>
