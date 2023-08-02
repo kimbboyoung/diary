@@ -12,5 +12,6 @@
    <p>Name: ${selectmy.m_name}</p>
    <p>닉네임: ${selectmy.m_nic}</p>
    <p>휴대폰번호: ${selectmy.m_phone}</p>
+   //시험
 </body>
 </html>
