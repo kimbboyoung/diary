@@ -8,18 +8,25 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
+
+	html, body {height:100%;}
+	
 	footer{
 		width: 100%;
 		margin: 0;
 		background-color:lightpink;
 		text-align:center;
 		position: absolute;
-		bottom: 0;
+		bottom:0;
 }
-.w3-padding-64 {
+	.w3-padding-64 {
     padding-top: 3px!important;
     padding-bottom: 3px!important;
     }
+    
+    
+    
+    
 </style>
 </head>
 <body>

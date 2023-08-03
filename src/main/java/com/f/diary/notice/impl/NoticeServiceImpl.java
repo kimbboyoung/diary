@@ -30,4 +30,20 @@ public class NoticeServiceImpl implements NoticeService{
 	public void deleteNotice(NoticeVO vo) {
 		 noticeDAO.deleteNotice(vo);
 	}
+	
+	//일기 보기
+	public NoticeVO selectNotice(NoticeVO vo) {
+		return noticeDAO.selectNotice(vo);
+	}
+	
+	//삭제된 일기 보기
+	public List<NoticeVO> selectDelNoticeList(NoticeVO vo){
+		return noticeDAO.selectDelNoticeList(vo);
+	}
+	
+	//일기 복원
+	public void resNotice(NoticeVO vo) {
+		noticeDAO.resNotice(vo);
+	}
+	
 }

@@ -1,5 +1,6 @@
 package com.f.diary.controller;
 
+import java.awt.print.Pageable;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -12,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -44,7 +48,9 @@ public class NoticeController {
 		SimpleDateFormat dateformat = new SimpleDateFormat("yy년MM월dd일 ");
 		Date date = new Date();
 		String result =dateformat.format(date);
-		String realPath ="c:/vet/diary/main/webapp/resources/imgs\\\\";
+		//경로를 바꿔주세요..^^
+		String realPath ="c:/swork/diary/main/webapp/resources/imgs\\\\";
+		
 //		0729 상대경로*
 
 		String filename = uploadFile.getOriginalFilename();		
@@ -71,12 +77,38 @@ public class NoticeController {
 		return "notice/noticeList";
 		
 	}
-	@ModelAttribute("어트리뷰트")
 	//0731 deleteNotice controller 생성
 	@RequestMapping("/deleteNotice")
-	public String deleteNoticeList( NoticeVO vo , Model model ) {
+	public String deleteNoticeList( NoticeVO vo , Model model ,HttpSession session) {
+		vo.setN_m_id((String) session.getAttribute("m_id"));
 		noticeService.deleteNotice(vo);
-		
-		return "notice/noticeList";
+		return "redirect:/selectNoticeList";
 	}
+	
+	//0802 noticeinfo.jsp에서 선택된 정보 보여주기
+	@RequestMapping("/selectNotice")
+	public String selectNotice(NoticeVO vo,Model model,HttpSession session) {
+		vo.setN_m_id((String)session.getAttribute("m_id"));
+		model.addAttribute("notice",noticeService.selectNotice(vo));
+		return "notice/noticeinfo";
+	}
+	//삭제된 일기 보여주기
+	@RequestMapping("/selectDelNoticeList")
+	public String selectDelNoticeList(NoticeVO vo,Model model, HttpSession session) {
+		vo.setN_m_id((String)session.getAttribute("m_id"));		
+		List<NoticeVO> delnoticelist = noticeService.selectDelNoticeList(vo);
+		model.addAttribute("delnoticelist",delnoticelist);
+		return "notice/delnotice";
+	}
+	
+	//일기 복원
+	@RequestMapping("/resNotice")
+	public String resNotice(NoticeVO vo,HttpSession session) {
+		vo.setN_m_id((String)session.getAttribute("m_id"));
+		noticeService.resNotice(vo);
+		return "redirect:/selectDelNoticeList";
+	}
+	
+	
 }
+
