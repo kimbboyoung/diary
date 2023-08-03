@@ -57,12 +57,13 @@ public class MemberController {
 		return "redirect:login";
 	}
 	//마이페이지로 이동, 회원정보 가져오기
-			@RequestMapping("/mypage")
-			public String mypageGo(MemberVO vo, HttpSession session, Model model) {
-				vo.setM_id((String)session.getAttribute("m_id"));
-			    model.addAttribute("selectmy",memberService.myPageSelect(vo));
-			    System.out.println(memberService.myPageSelect(vo));
-				return "member/mypage";
-			}
+	@RequestMapping("/mypage")
+	public String mypageGo(MemberVO vo, HttpSession session, Model model) {
+		vo.setM_id((String)session.getAttribute("m_id"));
+	    model.addAttribute("selectmy",memberService.myPageSelect(vo));
+	    System.out.println(memberService.myPageSelect(vo));
+		return "member/mypage";
+	}
+	
 }
 

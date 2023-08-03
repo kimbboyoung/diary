@@ -9,7 +9,7 @@
 <style>
 .logcon {
   background-color: #fefefe;
-  margin: 15% auto;
+  margin: 100px auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
@@ -18,8 +18,10 @@
 </style>
 </head>
 <body>
+<%@include file="../main/header.jsp" %>
 <div class="logcon">
     <!-- 로그인/회원가입 폼 등을 포함한 내용을 이곳에 추가합니다. -->
+    <h3>로그인</h3>
           <form class="w3-container" action="/logingo" method="post">
         <div class="w3-section">
           <label><b>ID</b></label>
@@ -31,5 +33,6 @@
         </div>
       </form>
 </div>
+<%@include file="../main/footer.jsp" %>
 </body>
 </html>
