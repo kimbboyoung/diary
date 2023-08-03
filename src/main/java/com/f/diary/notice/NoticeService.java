@@ -20,4 +20,7 @@ public interface NoticeService {
 	
 	//일기 복원
 	void resNotice(NoticeVO vo);
+	
+//	//일기 리스트
+//	List<NoticeVO> getNoticeList(NoticeVO vo);
 }

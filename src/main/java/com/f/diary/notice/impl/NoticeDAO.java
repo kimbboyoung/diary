@@ -49,4 +49,9 @@ public class NoticeDAO {
 	public void resNotice(NoticeVO vo) {
 		mybatis.update("NoticeDAO.resNotice",vo);
 	}
+	
+//	//날짜 선택시 일기 보여주기
+//	public List<NoticeVO> getDate(NoticeVO vo) {
+//		return mybatis.selectList("NoticeDAO.getDateList",vo);
+//	}
 }
