@@ -14,7 +14,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css">
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
 	section table{
 		border-collapse: collapse;
@@ -26,58 +28,85 @@
 	table{
 		margin: 0 50px; 
 	}
+	 .capTop{
+		caption-side: top;
+	 }
+	 section{
+	 	width: 65%;
+	 }
 </style>
 </head>
 <body>
 	<%@include file="../main/header.jsp" %>
-	<section>
-		<table style="float:left">
-			<caption>친구목록</caption>
-			<tr>
-				<th>그룹이름</th><th>친구번호</th><th>삭제여부</th>
-			</tr>
-			<% List<FriendsVO> fList = (List<FriendsVO>)request.getAttribute("friendsList"); 
-				if(fList != null){
-					for(FriendsVO fVo : fList){
-						%>
-						
+	<div  class="container" style="width: 85%;">
+		<table style="border: 1px solid black; margin: 0 auto; width: 100%;">
+		<tr>
+			<td style="height: 250px; ">
+				<table style="margin-top: 0; vertical-align: top;">
+					<caption class="capTop">친구목록</caption>
+					<tr>
+						<th>그룹이름</th><th>친구번호</th><th>삭제여부</th>
+					</tr>
+					<% List<FriendsVO> fList = (List<FriendsVO>)request.getAttribute("friendsList"); 
+						if(fList != null){
+							for(FriendsVO fVo : fList){
+								%>
+								
+								<tr>
+									<td><%=fVo.getF_group() %></td>
+									<td><%=fVo.getF_friendsid() %></td>
+									<td><a href="delFriends?f_friendsid=<%=fVo.getF_friendsid()%>">삭제</a></td>
+								</tr>
+								
+								<%
+							}
+						}
+					
+					%>
+				</table>
+			</td>
+			<td>
+				<table>
+					<caption class="capTop">친구요청목록</caption>
+					<tr><th>요청한친구이름</th></tr>
+				</table>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<form action="addFriends" method="post">
+					<table>
+						<caption class="capTop">친구추가</caption>
 						<tr>
-							<td><%=fVo.getF_group() %></td>
-							<td><%=fVo.getF_friendsnum() %></td>
-							<td><a href="delFriends?f_friendsnum=<%=fVo.getF_friendsnum()%>">삭제</a></td>
+							<th>그룹이름</th>
+							<th>친구아이디</th>
 						</tr>
-						
-						<%
-					}
-				}
+						<tr>
+							<td>
+								<input type="text" name="f_group" size="8px">
+							</td>
+							<td>
+								<input type="text" name="f_friendsid" size="8px">
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="text-align: center;">
+								<input type="submit" value="친구추가">
+							</td>
+						</tr>
+					</table>
+				</form>
 			
-			%>
-		</table>
+			</td>
+		</tr>
 		
-		<table>
-			<caption>친구요청목록</caption>
-			<tr><th>요청한친구이름</th></tr>
-		</table>
 		
-		<table>
-			<caption>친구추가</caption>
-			<tr>
-				<th>그룹이름</th>
-				<th>친구번호</th>
-			</tr>
-			<tr>
-				<td>
-					<select>
-						<option>선택없음</option>
-					</select>
-				</td>
-				<td>
-					<input type="text">
-				</td>
-			</tr>
-		</table>
 		
-	</section>
+		
+		
+		
+		</table>
+	</div>
 		<%@include file="../main/footer.jsp" %>
 </body>
 </html>
